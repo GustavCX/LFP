@@ -1,4 +1,6 @@
-class objGramartic:
+from AP import ObjAP
+
+class objGramatic:
     def __init__(self,nombre):
         self.nombre = nombre
         self.noTerminales = []

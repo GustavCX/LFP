@@ -1,4 +1,4 @@
-from Gramatica import objGramartic
+from ObjGram import objGramatic
 from os import system, path
 from GeneraArch import escrituracsv
 
@@ -8,7 +8,8 @@ def creaobjGT2(nombre):
     if buscanombre(nombre):
         return True
     else:
-        objTemp = objGRA(nombre)
+        objTemp = objGramatic(nombre)
+        #objTemp = Gramatica.objGramatic(nombre)
         listaGT2.append(objTemp)
         return False
 
@@ -60,8 +61,8 @@ def agregaTerminal(nombre): #no mayusculas
                         else:
                             print("No puede agregarse una mayúscula en los terminales")
                 else:
-                    print("El terminal " + terminal + " no se puede agregar"
-                          +"\nYa existe un terminal idéntico registrado\n")
+                    print("El terminal '" + terminal + "' no se puede agregar"
+                          +"\nEl terminal ingresado ya esta registrado\n")
             else:
                 print("Debe ingresar un terminal\n")
                 agrega = False
