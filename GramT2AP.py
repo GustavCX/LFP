@@ -210,18 +210,6 @@ def generaAutomata(nombre):
         pilatemp.agregaTransicion([["q",tr,tr], ["q",["$"]]])
     #FIN
     pilatemp.agregaTransicion([["q","$","#"], ["f",["$"]]])
-
-    # print("Terminales:")
-    # print(obj_GT2.getTerminales())
-    # print("No Terminales:")
-    # print(obj_GT2.getNoTerminales())
-    # print("No Terminal Inicial:")
-    # print(obj_GT2.getNTInicial())
-    # print("Producciones:")
-    # muestra(obj_GT2.getProducciones())
-    # print("\nTransiciones AP:")
-    # muestra(obj_GT2.getAP().getTran())
-
     pilatemp.generaGrafo()
     stp = input("Enter para continuar...")
 """ [

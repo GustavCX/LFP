@@ -25,7 +25,6 @@ def visualizarAP(nombre):
 
 
 def caratula():
-
     print("Lenguajes Formales de Programación")
     print("           Sección A+")
     print("           201700522")
@@ -147,6 +146,7 @@ while not salir:
             except ValueError:
                     print("Error - Debe ingresar un nombre")
                     stp = input("Presione enter para continuar...")
+        
         elif opcMenu == 3:
             os.system("cls")
             try:
@@ -163,6 +163,7 @@ while not salir:
             except ValueError:
                     print("Error - Debe ingresar un nombre")
                     stp = input("Presione enter para continuar...")     
+        
         elif opcMenu == 4:
             os.system("cls")
             try:
@@ -188,6 +189,7 @@ while not salir:
             salir = True
             os.system("cls")
             caratula()
+        
         else:
             print("Intrudicir un número entre 1 y 5")
 
