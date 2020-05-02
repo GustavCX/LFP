@@ -1,6 +1,6 @@
 from Gramatica import objGramartic
 from os import system, path
-from generalog import escrituracsv
+from GeneraArch import escrituracsv
 
 listaGT2 = []
 
