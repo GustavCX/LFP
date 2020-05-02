@@ -39,12 +39,11 @@ class ObjAP():
             self.transGrafo.append(t)
 
 # """ [    --------------- 0 ------------------           -------------------- 1 ---------------------
-#         ["estadoAct","caracter","descompila"],          ["estadoSig",     ["Elementos", "Compilados"] ]   z, M, N, z
+#         ["estadoAct","caracter","desapila"],          ["estadoSig",     ["Elementos", "apilados"] ]   z, M, N, z
 #           ----0----  ----1----   -----2-----             -----0-----      --------------1------------
 #                                                                           -----n----- ------n1------ 
 #     ]
 # """
-
     def agregaAlfabeto(self, alfa):
         self.alfabeto = alfa
     def agregaSimbolosPila(self, elem, alfa):
