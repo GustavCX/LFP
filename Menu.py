@@ -15,6 +15,14 @@ def pausa():
     except TimeoutError:
         print("Error de sleep")
 
+def generaAP(nombre):
+    GramT2AP.generaAutomata(nombre)
+
+
+def visualizarAP(nombre):
+    GramT2AP.muestraAPgrafo(nombre)
+    stp = input("Presione enter para continuar...")
+
 
 def caratula():
 
@@ -183,5 +191,5 @@ while not salir:
         else:
             print("Intrudicir un número entre 1 y 5")
 
-def generaAP(nombre):
-    GT2AP.generaAutomata(nombre)
+
+
