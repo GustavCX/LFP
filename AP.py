@@ -3,7 +3,6 @@ from GeneraGraph import grafo
 class ObjAP():
     
     def __init__(self, nombre):
-        self.tipo = "AP"
         self.nombre = nombre
         self.estados = ["i", "p", "q", "f"]
         self.alfabeto = []
@@ -17,10 +16,9 @@ class ObjAP():
     # METODO PARA GRAFO
     def generaGrafo(self):
         self.creaFormatoTransicion()
-        # print(self.transGrafo)
-        # e = ["i", "p", "          q          ", "f"]
         grafo(self.nombre, self.estados, self.transGrafo, self.estini, self.estacept)
-
+        self.imprimirSextupla()
+        
     #Metodos de grafo  (generar lista transicion)
     def creaFormatoTransicion(self):
         self.transGrafo.clear()
@@ -50,7 +48,7 @@ class ObjAP():
         self.simbolosPila.clear()
         self.simbolosPila.extend(elem)
         self.simbolosPila.extend(alfa)
-        self.simbolosPila.append("epsilon")
+        #self.simbolosPila.append("epsilon")
     def agregaTransicion(self, tran):
         self.transicion.append(tran)
     def cleanTransicion(self):
@@ -104,3 +102,13 @@ class ObjAP():
         print(self.pila)
     def limpiaPila(self):
         self.pila.clear()
+
+        
+    def imprimirSextupla(self):
+        print("Nombre               " + str(self.nombre))
+        print("Estados              " + str(self.estados))
+        print("Alfabeto             " + str(self.alfabeto))
+        print("Simbolos de pila     " + str(self.simbolosPila))
+        print("Estado Inicial       " + str(self.estini))
+        print("Estado de aceptacion " + str(self.estacept))
+        print("Transiciones         " + str(self.transicion))

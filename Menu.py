@@ -9,15 +9,16 @@ opcCarga = 0
 
 salir = False
 
-def pausa():
+def validaNum():
+    num=0
     try:
-        time.sleep(1.8)
-    except TimeoutError:
-        print("Error de sleep")
+     num = int(input("Seleccione una opción: "))
+    except ValueError:
+     print("--------Error, Ingrese unicamente números-----------")
+    return num
 
 def generaAP(nombre):
     GramT2AP.generaAutomata(nombre)
-
 
 def visualizarAP(nombre):
     GramT2AP.muestraAPgrafo(nombre)
@@ -33,16 +34,9 @@ def caratula():
     iniciar = input("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-")
     os.system("cls")
 
-def validaNum():
-    num=0
-    try:
-     num = int(input("Seleccione una opción: "))
-    except ValueError:
-     print("--------Error, Ingrese unicamente números-----------")
-    return num
-
 
 def menuGMT2AP(nombre):
+    os.system ("cls")
     finalizar = False
     opc = 1
     while finalizar == False:
@@ -56,7 +50,7 @@ def menuGMT2AP(nombre):
         print("5. NT Inicial")
         print("6. Regresar al menú principal")
         try:
-            opc = int (input("Elija una opción: "))
+            opc = validaNum()
             if opc==1:
                 GramT2AP.agregaTerminal(nombre)
             elif opc == 2:
@@ -80,37 +74,33 @@ def menuGMT2AP(nombre):
                     print("Debe definir un no terminal inicial")
             else:
                 print("Ingrese un número entre 1 y 6")
-            pausa()
-            os.system ("cls")
+                os.system ("cls")
         except ValueError:
             print("Opción inválida")
-            print()
-           # pausa()
             os.system ("cls")
     
+caratula()
 while not salir:
-
-        caratula()
-        print("**************************************")
-        print("*              Bienvenido            *")
-        print("**************************************")
-        print("1. Ingresar Gramática/Modificar")
-        print("2. Generar Automata")
-        print("3. Visualizar Automata")
-        print("4. Validar Cadena")
-        print("5. Salir \n")
+    print("**************************************")
+    print("*              Bienvenido            *")
+    print("**************************************")
+    print("1. Ingresar Gramática/Modificar")
+    print("2. Generar Automata")
+    print("3. Visualizar Automata")
+    print("4. Validar Cadena")
+    print("5. Salir \n")
 
       
-        opcMenu = validaNum()
-        opcMnu = False
+    opcMenu = validaNum()
+    opcMnu = False
 
-        if opcMenu == 1:
+    if opcMenu == 1:
             try:
                 os.system ("cls")
                 nombreGM = input("\nIngrese el nombre de la gramatica: ")
                 if nombreGM:
                     if GramT2AP.creaobjGT2(nombreGM):
-                    #if GramT2AP.creaobjGT2(nombreGM):
+                    
                         print("Ya existe una gramatica con el nombre " + nombreGM)
                         try:
                             select = input("¿Desea modificar esta gramatica? Y/N: ")
@@ -127,10 +117,9 @@ while not salir:
                     print ("Debe ingresar un nombre\n")
                     
             except ValueError:
-                print("Error - Debe ingresar un nombre")
-           # pausa()       
+                print("Error - Debe ingresar un nombre")      
             
-        elif opcMenu == 2:
+    elif opcMenu == 2:
             os.system("cls")
             try:
                 nombreGM = input("\nIngrese el nombre de la gramatica: ")
@@ -147,7 +136,7 @@ while not salir:
                     print("Error - Debe ingresar un nombre")
                     stp = input("Presione enter para continuar...")
         
-        elif opcMenu == 3:
+    elif opcMenu == 3:
             os.system("cls")
             try:
                 nombreGM = input("\nIngrese el nombre de la gramatica: ")
@@ -164,7 +153,7 @@ while not salir:
                     print("Error - Debe ingresar un nombre")
                     stp = input("Presione enter para continuar...")     
         
-        elif opcMenu == 4:
+    elif opcMenu == 4:
             os.system("cls")
             try:
                 nombreGM = input("\nIngrese el nombre de la gramatica: ")
@@ -185,13 +174,10 @@ while not salir:
                     print("Error - Debe ingresar un nombre")
                     stp = input("Presione enter para continuar...")
                 
-        elif opcMenu == 5:
+    elif opcMenu == 5:
             salir = True
             os.system("cls")
             caratula()
-        
-        else:
+     
+    else:
             print("Intrudicir un número entre 1 y 5")
-
-
-

@@ -50,11 +50,12 @@ def agregaTerminal(nombre): #no mayusculas
     agrega = True
     while agrega == True:
         try:
-            terminal = input("Ingrese un terminal: ")
+            terminal = input("Ingrese un terminal:  ")
             if terminal:
                 if obj_GT2.validaTerminal(terminal) == False: #Valida que no esté en la lista
                     if validaNumero(terminal): #Valida si se esta ingresando un numero
                         obj_GT2.agregaT(terminal)
+                        
                     else:
                         if validaMayMin(terminal): #Valida si el terminal es minúscula
                             obj_GT2.agregaT(terminal)
@@ -103,17 +104,22 @@ def agregaProduccionGT2(nombre):
         try:
             produccion = input("Ingrese la producción: ") # NT > # # # #
             if produccion:
-                if produccion.__contains__(">") and produccion.__contains__(" "):
-                    separador = produccion.split(" > ")
-                    prod = separador[1].split(" ")
-                    prdc = [separador[0], prod]  # [ NT, [T & NT]]
-                    if obj_GT2.validaNoTerminal(separador[0]) and validaElementosProd(nombre, prod):
-                        obj_GT2.agregaProducion(prdc)
-                        # muestra(obj_GT2.getProducciones())
+                try:
+                    if produccion.__contains__(">") and produccion.__contains__(" "):
+                        separador = produccion.split(">")
+                        prod = separador[1].split(" ")
+                        prdc = [separador[0], prod]  # [ NT, [T & NT]]
+                        if obj_GT2.validaNoTerminal(separador[0]) and validaElementosProd(nombre, prod):
+                            obj_GT2.agregaProducion(prdc)
+                            # muestra(obj_GT2.getProducciones())
+                        else:
+                            print("Verifique que la producción ingresada sea correcta\n")
+                    
                     else:
-                        print("Verifique que la producción ingresada sea correcta\n")
-                else:
-                    print("Se detectaron errores en el formato ingrese la producción nuevamente\n")
+                        print("Se detectaron errores en el formato ingrese la producción nuevamente\n")
+           
+                except:
+                    print("Error al ingresar producción")
             else:
                 print("Debe ingresar una producción\n")
                 agrega = False
@@ -196,29 +202,23 @@ def generaAutomata(nombre):
     pilatemp.agregaSimbolosPila(obj_GT2.getNoTerminales(), obj_GT2.getTerminales())
     pilatemp.cleanTransicion()
     #TRANSICIONES   ϵ
-    pilatemp.agregaTransicion([["i","$","$"], ["p",["#"]]])
+    pilatemp.agregaTransicion([["i","£","£"], ["p",["#"]]])
     #TIPO 1
     inicio = obj_GT2.getNTInicial()
-    pilatemp.agregaTransicion([["p","$","$"], ["q",[inicio]]])  # [[Lista],[estado,Lista]]
+    pilatemp.agregaTransicion([["p","£","£"], ["q",[inicio]]])  # [[Lista],[estado,Lista]]
     #TIPO2
     trcs = obj_GT2.getProducciones()  # [ NT, [T & NT]]
     for t in trcs:
-        pilatemp.agregaTransicion([["q","$",t[0]], ["q",t[1]]])
+        pilatemp.agregaTransicion([["q","£",t[0]], ["q",t[1]]])
     #TIPO3
     term = obj_GT2.getTerminales()
     for tr in term:
-        pilatemp.agregaTransicion([["q",tr,tr], ["q",["$"]]])
+        pilatemp.agregaTransicion([["q",tr,tr], ["q",["£"]]])
     #FIN
-    pilatemp.agregaTransicion([["q","$","#"], ["f",["$"]]])
+    pilatemp.agregaTransicion([["q","£","#"], ["f",["£"]]])
     pilatemp.generaGrafo()
     stp = input("Enter para continuar...")
-""" [
-        ["estadoAct","caracter","descompila"], 
-        ["estadoSig", 
-            ["Elementos", "Compilados"]
-        ]
-    ]
-"""
+
 def muestraAPgrafo(nombre):
     name = nombre + "-grafo.jpg"
     if path.isfile(name):
@@ -226,9 +226,11 @@ def muestraAPgrafo(nombre):
         system (di)
     else:
         print ("La imagen del autómata no existe o no ha sido generada")
+    
 
 def analizacadena(nombre):
-    cadena = input("Ingresa la cadena a analizar: ")
+    cadRev = input("Ingresa la cadena a analizar: ")
+    cadena = cadRev.split(" ") 
     cadHist = list(reversed(list(cadena)))
     if cadena:
         estadoActual = "i"
@@ -252,7 +254,7 @@ def analizacadena(nombre):
                     pilaHist = objPila.getStatusPila()
                     if pilaHist == None:
                         pilaHist = "Vacío"
-                    logHist = pilaHist + "$ " + uniHist + "$ " + trnHist
+                    logHist = pilaHist + "$ " + uniHist + "$ " + trnHist  
                     # print(pilaHist + "   " + uniHist + "   " + trnHist)
                     historial.append(logHist)
                     if consumeCaracter:

@@ -7,10 +7,10 @@ class objGramatic:
         self.terminales = []
         self.noTermIni = ""
         self.producciones = [] 
-        self.historial = []
+       # self.historial = []
         self.automataPila = ObjAP(nombre)
 
-#METODO PARA GRAFO
+    #METODO PARA GRAFO
     def generaArbolGrafo(self):
         pass
         #grafo(self.nombre, self.estados, self.transicion, self.estini, self.estacept)
@@ -69,3 +69,6 @@ class objGramatic:
         return self.tipo
     def getAP (self):
         return self.automataPila
+
+
+    

@@ -41,15 +41,11 @@ def grafo(nombre, estados, transiciones, inicio, aceptacion):
         escrituranorm(log, nombre)
     log = "}"
     escrituranorm(log, nombre)
-    
+
     #generacmd("grafo.cmd")
     generagraf(nombre)
     
 def generagraf(nombre):
-    #dire = input("Ingresa la dirección de destino del grafo: ")
-    #if dire:
-    #    di = "dot -Tjpg " +  nombre + ".dot -o "+dire +"\\" + nombre + ".jpg"
-    #else:
     di = "dot -Tjpg " +  nombre + ".dot -o " + nombre + "-grafo.jpg"
     mimetodo(di)
     
